@@ -1,11 +1,16 @@
 # MMD2Illust
 
-Requires  
+## Requires:  
 - opencv-python  
 - Pillow  
 - moviepy  
 - kivy  
 - pytorch with CUDA  
-  
-<br /><br /><br />
+
+ ## Usage:  
+ Run MMD2illust_App.py  
+~~~
+ python MMD2illust_App.py
+~~~
+
 **MIT License**
