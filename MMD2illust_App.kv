@@ -1,0 +1,108 @@
+# File name: MMD2illust_App.py
+<Main_Layout>:
+    Label:
+        id: MainLabel
+        text: "Drop a file or folder on this window."
+        font_size: 32
+        markup: True
+
+    Button:
+        id: SubLabel
+        text: "Settings"
+        font_size: 24
+        size_hint: 0.2, 0.2
+        pos_hint: {'center_x': 0.5, 'center_y': 0.15}
+        color: 1,1,1,0.5
+        background_color: (0.0, 0.0, 0.0, 0.0)
+        on_press: root._open_settings()
+        markup: True
+
+<Sub_Layout>:
+    CheckBox:
+        id: MMD2illustCheckbox
+        pos: 50, root.height * 7.5 / 10
+        group: 'radio'
+        active: True
+        on_press: root._on_process_type_checkbox_check(self)
+
+    Label:
+        id: MMD2illustLabel
+        pos: MMD2illustCheckbox.pos[0] + 110, MMD2illustCheckbox.pos[1]
+        font_size: 32
+        text: 'MMD2illust'
+
+    CheckBox:
+        id: OversizeCheckbox
+        pos: MMD2illustCheckbox.pos[0] + 70, root.height * 7.1 / 10
+        active: True
+        size: (32, 32)
+        on_press: root._on_is_oversize_checkbox_check(self)
+
+    Label:
+        id: OversizeLabel
+        pos: OversizeCheckbox.pos[0] + 65, OversizeCheckbox.pos[1] - 32
+        font_size: 28
+        text: '--output HD'
+
+    CheckBox:
+        id: IllustExpandCheckbox
+        pos: 50, root.height * 4 / 10
+        group: 'radio'
+        on_press: root._on_process_type_checkbox_check(self)
+
+    Label:
+        id: IllustExpandLabel
+        pos: IllustExpandCheckbox.pos[0] + 120, IllustExpandCheckbox.pos[1]
+        font_size: 32
+        text: 'Expand Illust'
+
+    Label:
+        id: ExpandRateSliderText
+        pos: IllustExpandCheckbox.pos[0] + 135, IllustExpandCheckbox.pos[1] - 50
+        font_size: 24
+        text: "--Expand Rate: 2.0"
+
+    Slider:
+        id: ExpandRateSlider
+        width: root.width * 2 / 3
+        pos: IllustExpandCheckbox.pos[0] + 80, IllustExpandCheckbox.pos[1]- 80
+        min: 10
+        max: 20
+        value: 20
+        on_touch_move: root._on_expand_rate_change(round(self.value/10, 2))
+        disabled: True
+
+    Button:
+        text: "Return"
+        pos: root.width/2 - self.width/2, 0
+        font_size: 24
+        color: 1,1,1,0.5
+        background_color: (0.0, 0.0, 0.0, 0.0)
+        on_press: root._return_to_main()
+        markup: True
+
+<Process_Layout>:
+    Label:
+        id: ProgressBarLabel
+        text: "Progress: 0/0"
+        pos: root.width/2 - self.width/2, root.height/2 + self.font_size
+        font_size: 32
+        markup: True
+
+    ProgressBar:
+        id: ProgressBar
+        pos: root.width/2 - self.width/2, root.height/2
+        width: root.width * 2 / 3
+        min: 0
+        max: 100
+        value: 0
+
+    Button:
+        id: CancelLabel
+        text: "Cancel"
+        pos: root.width/2 - self.width/2, 0
+        font_size: 24
+        color: 1,1,1,0.5
+        background_color: (0.0, 0.0, 0.0, 0.0)
+        on_press: root._cancel_process()
+        markup: True
